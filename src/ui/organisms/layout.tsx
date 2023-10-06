@@ -1,9 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ActiveLink } from "@/ui/atoms/ActiveLink";
 
 const inter = Inter({ subsets: ["latin"] });
+import { ActiveLink } from "@/ui/atoms/ActiveLink";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -18,14 +18,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<nav>
 					<ul className="mt-2 flex justify-center space-x-4">
 						<li>
-							<ActiveLink href="/" exact>
-								Home
-							</ActiveLink>
+							<ActiveLink href="/">Home</ActiveLink>
 						</li>
 						<li>
-							<ActiveLink href="/products" exact>
-								All
-							</ActiveLink>
+							<ActiveLink href="/products">All</ActiveLink>
 						</li>
 					</ul>
 				</nav>

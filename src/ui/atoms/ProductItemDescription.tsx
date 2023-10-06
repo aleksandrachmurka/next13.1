@@ -1,4 +1,4 @@
-import { formatPrice } from "@/utils";
+import { formatPrice } from "../../utils";
 
 type ProductListItemDescriptionProps = Product;
 
@@ -8,14 +8,14 @@ type Product = {
 	price: number;
 };
 
-export const ProductListItemDescription = ({
+export const ProductItemDescription = ({
 	name,
 	category,
 	price,
 }: ProductListItemDescriptionProps) => (
 	<div className="mt-2 flex justify-between">
 		<div className="text-sm font-semibold text-slate-900">
-			<h3>{name}</h3>
+			<h1>{name}</h1>
 			<p className="text-sm font-light text-slate-900">
 				<span className="sr-only">Kategoria:</span> {category}
 			</p>
