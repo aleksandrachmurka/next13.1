@@ -10,8 +10,7 @@ export async function generateStaticParams() {
 }
 
 export default async function ProductsPage({ params }: { params: { page: string } }) {
-	// const skip = Number(params.page) === 1 ? 0 : Number(params.page) * 20 - 20;
-	const products = await getProducts(params);
+	const products = await getProducts(params.page);
 
 	return (
 		<section className="sm:py-18 mx-auto flex w-full max-w-2xl flex-grow flex-col px-8 py-12 sm:px-6 lg:max-w-7xl">

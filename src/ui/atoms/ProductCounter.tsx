@@ -18,7 +18,7 @@ export const ProductCounter = () => {
 			>
 				-
 			</button>
-			<input readOnly value={value} className="border border-slate-200" />
+			<input readOnly value={counter} className="border border-slate-200" />
 		</div>
 	);
 };

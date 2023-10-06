@@ -15,10 +15,11 @@ type ProductResponseItem = {
 	longDescription: string;
 };
 
-export const getProducts = async (params?: number) => {
-	console.log(params);
+export const getProducts = async (pageParam?: string) => {
 	const data = await fetch(
-		`https://naszsklep-api.vercel.app/api/products?take=20${params ? `&offset=${params}` : ""}`,
+		`https://naszsklep-api.vercel.app/api/products?take=20${
+			pageParam ? `&offset=${pageParam}` : ""
+		}`,
 	);
 	const productsResponse = (await data.json()) as ProductResponseItem[];
 	const products = productsResponse.map(productResponseItemToProductItem);

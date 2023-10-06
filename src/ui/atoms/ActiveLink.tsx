@@ -2,21 +2,21 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import type { ComponentProps, ReactNode } from "react";
+import type { ReactNode } from "react";
 import type { Route } from "next";
 
-type ActiveLinkProps = ComponentProps<typeof Link> & {
+export type ActiveLinkProps<T extends string> = {
+	href: Route<T>;
+	children: ReactNode;
 	exact?: boolean;
+	className?: string;
 	activeClassName?: string;
 };
-
-export const ActiveLink = ({
+export const ActiveLink = <T extends string>({
 	href,
 	children,
 	exact = false,
-	className,
-	activeClassName,
-}: ActiveLinkProps) => {
+}: ActiveLinkProps<T>) => {
 	const pathname = usePathname();
 	const isActive = exact ? pathname === href : href.startsWith(pathname.substring(1));
 

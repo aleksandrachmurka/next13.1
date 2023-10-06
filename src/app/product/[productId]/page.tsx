@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type { Metadata } from "next/types";
 import { Suspense } from "react";
 import { getProductById, getProducts } from "@/api/products";
 import { ProductItemDescription } from "@/ui/atoms/ProductItemDescription";
 import { ProductItemCoverImage } from "@/ui/atoms/ProductItemCoverImage";
 import { SuggestedProducts } from "@/ui/organisms/SuggestedProducts";
+import type { ProductResponseItem } from "@/app/products/page";
 
 export async function generateMetadata({
 	params,
@@ -11,7 +13,7 @@ export async function generateMetadata({
 	params: { productId: string };
 }): Promise<Metadata> {
 	const res = await fetch("https://naszsklep-api.vercel.app/api/products/" + params.productId);
-	const product = await res.json();
+	const product: ProductResponseItem = await res.json();
 
 	return {
 		title: product.title,
