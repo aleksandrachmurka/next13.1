@@ -6,9 +6,11 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint --fix --dir src"
+		"lint": "next lint --fix --dir src",
+		"codegen": "graphql-codegen --config .graphqlrc.ts"
 	},
 	"dependencies": {
+		"@graphql-typed-document-node/core": "^3.2.0",
 		"@mdx-js/loader": "^2.3.0",
 		"@mdx-js/react": "^2.3.0",
 		"@next/mdx": "^13.4.19",
@@ -20,7 +22,7 @@
 		"clsx": "^2.0.0",
 		"eslint": "8.48.0",
 		"eslint-config-next": "13.4.19",
-		"next": "13.4.19",
+		"next": "13.5.4",
 		"postcss": "8.4.29",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
@@ -29,6 +31,9 @@
 		"typescript": "5.2.2"
 	},
 	"devDependencies": {
+		"@graphql-codegen/cli": "5.0.0",
+		"@graphql-codegen/client-preset": "4.1.0",
+		"@next/env": "^13.5.4",
 		"@tailwindcss/typography": "^0.5.10",
 		"@typescript-eslint/eslint-plugin": "^6.6.0",
 		"@typescript-eslint/parser": "^6.6.0",

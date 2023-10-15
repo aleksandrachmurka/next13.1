@@ -1,5 +1,25 @@
-export default function Home() {
+import { getCollections } from "@/api/collections";
+import { ActiveLink } from "@/ui/atoms/ActiveLink";
+
+export default async function Home() {
+	const collections = await getCollections();
+
 	return (
-		<h1 className="mb-2 mt-0 text-6xl font-normal leading-normal text-purple-800">Home page</h1>
+		<>
+			<main className="flex min-h-screen flex-col items-center p-12">
+				<h1>Home</h1>
+				<section>
+					<ul className="mt -5 flex justify-center space-x-4">
+						{collections.map((collection) => (
+							<li key={collection.id}>
+								<ActiveLink href={`/collections/${collection.slug}`} exact>
+									{collection.name}
+								</ActiveLink>
+							</li>
+						))}
+					</ul>
+				</section>
+			</main>
+		</>
 	);
 }

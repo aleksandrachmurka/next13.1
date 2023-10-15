@@ -1,27 +1,26 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type { Metadata } from "next/types";
 import { Suspense } from "react";
+import { notFound } from "next/navigation";
 import { getProductById, getProducts } from "@/api/products";
 import { ProductItemDescription } from "@/ui/atoms/ProductItemDescription";
 import { ProductItemCoverImage } from "@/ui/atoms/ProductItemCoverImage";
 import { SuggestedProducts } from "@/ui/organisms/SuggestedProducts";
-import type { ProductResponseItem } from "@/app/products/page";
 
 export async function generateMetadata({
 	params,
 }: {
 	params: { productId: string };
 }): Promise<Metadata> {
-	const res = await fetch("https://naszsklep-api.vercel.app/api/products/" + params.productId);
-	const product: ProductResponseItem = await res.json();
+	const product = await getProductById(params.productId);
 
 	return {
-		title: product.title,
+		title: product.name,
 		description: product.description,
 		openGraph: {
-			title: product.title,
+			title: product.name,
 			description: product.description,
-			images: [product.image],
+			images: product.images,
 		},
 	};
 }
@@ -34,21 +33,32 @@ export const generateStaticParams = async () => {
 export default async function ProductPage({ params }: { params: { productId: string } }) {
 	const product = await getProductById(params.productId);
 
+	if (!product) {
+		notFound();
+	}
+
 	return (
 		<>
 			<article className="max-w-xs">
-				<ProductItemCoverImage alt={product.coverImage.alt} src={product.coverImage.src} />
+				{product.images[0]?.url && (
+					<ProductItemCoverImage alt={product.name} src={product.images[0].url} />
+				)}
 				<ProductItemDescription
 					name={product.name}
-					category={product.category}
+					category={product.categories[0]?.name}
 					price={product.price}
 				/>
 			</article>
-			<aside>
-				<Suspense fallback={<div>Loading...</div>}>
-					<SuggestedProducts />
-				</Suspense>
-			</aside>
+			{product.categories[0]?.slug && (
+				<aside>
+					<Suspense fallback={<div>Loading...</div>}>
+						<SuggestedProducts
+							category={product.categories[0].slug}
+							currentProductId={product.id}
+						/>
+					</Suspense>
+				</aside>
+			)}
 		</>
 	);
 }

@@ -17,7 +17,8 @@ export const ActiveLink = <T extends string>({
 	exact = false,
 }: ActiveLinkProps<T>) => {
 	const pathname = usePathname();
-	const isActive = exact ? pathname === href : href.startsWith(pathname.substring(1));
+	const isActive = exact ? pathname === href : pathname.substring(1).startsWith(href.substring(1));
+	console.log(pathname.substring(1));
 
 	const className = "border-b-2 border-b-transparent text-sm";
 	const activeClassName = "border-b-2 border-b-black text-sm font-semibold";

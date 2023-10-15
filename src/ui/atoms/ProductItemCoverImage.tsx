@@ -1,4 +1,5 @@
 import React from "react";
+import NextImage from "next/image";
 
 type ProductListItemCoverImageProps = {
 	alt: string;
@@ -10,7 +11,7 @@ const IMAGE_HEIGHT = 320;
 
 export const ProductItemCoverImage = ({ alt, src }: ProductListItemCoverImageProps) => (
 	<div className="hover: aspect-square overflow-hidden rounded-md border bg-slate-100 bg-slate-50">
-		<img
+		<NextImage
 			width={IMAGE_WIDTH}
 			height={IMAGE_HEIGHT}
 			src={src}

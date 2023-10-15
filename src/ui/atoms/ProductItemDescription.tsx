@@ -4,7 +4,7 @@ type ProductListItemDescriptionProps = Product;
 
 type Product = {
 	name: string;
-	category: string;
+	category?: string;
 	price: number;
 };
 
