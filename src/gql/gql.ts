@@ -20,7 +20,7 @@ const documents = {
     "fragment ProductListItem on Product {\n  id\n  name\n  categories(first: 1) {\n    name\n    slug\n  }\n  images {\n    url\n  }\n  price\n}": types.ProductListItemFragmentDoc,
     "query ProductsGetByCategorySlug($slug: String!) {\n  categories(where: {slug: $slug}) {\n    products {\n      id\n      name\n      description\n      categories(first: 1) {\n        name\n        slug\n      }\n      images {\n        url\n      }\n      price\n    }\n  }\n}": types.ProductsGetByCategorySlugDocument,
     "query ProductsGetByCollectionSlug($slug: String!) {\n  collections(where: {slug: $slug}) {\n    products {\n      id\n      name\n      description\n      categories(first: 1) {\n        slug\n        name\n      }\n      images {\n        url\n      }\n      price\n    }\n  }\n}": types.ProductsGetByCollectionSlugDocument,
-    "query ProductsGetList {\n  products {\n    id\n    name\n    description\n    categories(first: 1) {\n      name\n      slug\n    }\n    images {\n      url\n    }\n    price\n  }\n}": types.ProductsGetListDocument,
+    "query ProductsGetList($amount: Int, $offset: Int) {\n  products(first: $amount, skip: $offset) {\n    id\n    name\n    description\n    categories(first: 1) {\n      name\n      slug\n    }\n    images {\n      url\n    }\n    price\n  }\n}": types.ProductsGetListDocument,
     "query ProductsGetQuantity {\n  productsConnection {\n    aggregate {\n      count\n    }\n  }\n}": types.ProductsGetQuantityDocument,
 };
 
@@ -51,7 +51,7 @@ export function graphql(source: "query ProductsGetByCollectionSlug($slug: String
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query ProductsGetList {\n  products {\n    id\n    name\n    description\n    categories(first: 1) {\n      name\n      slug\n    }\n    images {\n      url\n    }\n    price\n  }\n}"): typeof import('./graphql').ProductsGetListDocument;
+export function graphql(source: "query ProductsGetList($amount: Int, $offset: Int) {\n  products(first: $amount, skip: $offset) {\n    id\n    name\n    description\n    categories(first: 1) {\n      name\n      slug\n    }\n    images {\n      url\n    }\n    price\n  }\n}"): typeof import('./graphql').ProductsGetListDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

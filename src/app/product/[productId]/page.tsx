@@ -50,7 +50,7 @@ export default async function ProductPage({ params }: { params: { productId: str
 				/>
 			</article>
 			{product.categories[0]?.slug && (
-				<aside>
+				<aside className="pb-2">
 					<Suspense fallback={<div>Loading...</div>}>
 						<SuggestedProducts
 							category={product.categories[0].slug}

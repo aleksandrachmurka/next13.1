@@ -9,8 +9,11 @@ import {
 } from "../gql/graphql";
 import { executeGraphql } from "./common";
 
-export const getProducts = async (): Promise<ProductListItemFragment[]> => {
-	const response = await executeGraphql(ProductsGetListDocument, {});
+export const getProducts = async (
+	amount?: number,
+	offset?: number,
+): Promise<ProductListItemFragment[]> => {
+	const response = await executeGraphql(ProductsGetListDocument, { amount, offset });
 	const products = response.products;
 
 	return products;
