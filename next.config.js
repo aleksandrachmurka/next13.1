@@ -3,6 +3,8 @@ const nextConfig = {
   pageExtensions: ["ts", "tsx", "mdx"],
   experimental: {
   typedRoutes: true,
+	workerThreads: false,
+  cpus: 1
 	},
   mdxRs: true,
   images: {
